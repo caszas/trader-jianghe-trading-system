@@ -1,0 +1,350 @@
+{
+  "skill": "trader-jianghe-trading-system",
+  "version": "1.0.0",
+  "note": "single 模式：1 个入口 + 47 张能力卡。should_trigger 用例同时承担路由断言（expected_behavior 中标明应加载的能力卡）。",
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "我看盘的时候老是不知道止损该放哪儿，一般都随手放个30个点，这样对吗？",
+      "expected_behavior": "调用 trader-jianghe-trading-system，加载 references/capabilities/position-sizing-by-stop.md，指出应按逻辑否认点定止损、再由止损距离反推仓位",
+      "notes": "正面场景：以损定仓（最高优先级能力）"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "同一个位置我已经连着被扫两次了，现在又出信号，我还做不做？",
+      "expected_behavior": "加载 references/capabilities/consecutive-loss-stop.md，给出\"同一逻辑两次即停\"的结论，并说明第三次的情绪成本",
+      "notes": "正面场景：连损熔断"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "我5分钟看多、15分钟看空、一小时又看多，到底该听谁的？",
+      "expected_behavior": "加载 references/capabilities/timeframe-contract.md，说明周期不是方向而是成本契约、必须先固定主周期",
+      "notes": "正面场景：周期契约"
+    },
+    {
+      "id": "should-trigger-04",
+      "type": "should_trigger",
+      "prompt": "这单到底该不该做？我有点犹豫，但也怕错过。",
+      "expected_behavior": "加载 references/capabilities/setup-gate.md，给出二值的\"不做\"结论，不接受\"小仓位试试\"",
+      "notes": "正面场景：硬座闸门"
+    },
+    {
+      "id": "should-trigger-05",
+      "type": "should_trigger",
+      "prompt": "黄金现在这个位置一直上不去也下不来，怎么做？",
+      "expected_behavior": "加载 references/capabilities/range-market-playbook.md，判定为宽幅震荡并给出只做上下沿、中间不碰的方案",
+      "notes": "正面场景：宽幅震荡"
+    },
+    {
+      "id": "should-trigger-06",
+      "type": "should_trigger",
+      "prompt": "我已经有浮盈了，能不能加点仓把利润做大？",
+      "expected_behavior": "加载 references/capabilities/position-allocation.md，明确\"只做递减不做递增\"，禁止浮盈加仓",
+      "notes": "正面场景：筹码分配"
+    },
+    {
+      "id": "should-trigger-07",
+      "type": "should_trigger",
+      "prompt": "我总觉得自己的交易逻辑好像不好使了，怎么判断一套逻辑到底有没有效？",
+      "expected_behavior": "加载 references/capabilities/order-deconstruction-backtest.md，给出拆订单回测流程（拆盈利找必要条件、拆亏损砍条件）",
+      "notes": "正面场景：拆订单回测"
+    },
+    {
+      "id": "should-trigger-08",
+      "type": "should_trigger",
+      "prompt": "亏了之后我总是忍不住想马上把损失打回来，怎么办？",
+      "expected_behavior": "加载 references/capabilities/emotion-three-step.md，给出事实→感受→我要怎么做三步，并把\"亏损后动作\"写进系统",
+      "notes": "正面场景：情绪三步法"
+    },
+    {
+      "id": "should-trigger-09",
+      "type": "should_trigger",
+      "prompt": "价格刚打破关键位，我该不该追进去？",
+      "expected_behavior": "加载 references/capabilities/true-false-breakout.md，用\"实体拉出50% + 第二根跟随\"判断真假突破",
+      "notes": "正面场景：真假突破"
+    },
+    {
+      "id": "should-trigger-10",
+      "type": "should_trigger",
+      "prompt": "K线图里那些形态（头肩顶、三角形）到底该不该背？",
+      "expected_behavior": "加载 references/capabilities/forget-patterns.md，说明形态只是逻辑的载体、同一形态在不同背景下含义不同",
+      "notes": "正面场景：忘掉形态"
+    },
+    {
+      "id": "should-trigger-11",
+      "type": "should_trigger",
+      "prompt": "我每天都想开单，一天不做手就痒，这正常吗？",
+      "expected_behavior": "加载 references/capabilities/self-check-overtrading.md，用\"做单是为了赚钱还是为了爽\"与\"频率是否由系统触发\"自检",
+      "notes": "正面场景：过手瘾自检"
+    },
+    {
+      "id": "should-trigger-12",
+      "type": "should_trigger",
+      "prompt": "我学交易两年了，各流派都看过，还是不知道该怎么建立自己的系统。",
+      "expected_behavior": "加载 references/capabilities/growth-path.md（学习三阶段）并指向 references/capabilities/trade-system-build.md",
+      "notes": "正面场景：成长路径（跨卡组合）"
+    },
+    {
+      "id": "should-trigger-13",
+      "type": "should_trigger",
+      "prompt": "我的单子被套了，一直扛着等解套，这样对吗？",
+      "expected_behavior": "加载 references/capabilities/trapped-order-triage.md，说明逻辑被否认即离场、不许有被套单",
+      "notes": "正面场景：被套单排障"
+    },
+    {
+      "id": "should-trigger-14",
+      "type": "should_trigger",
+      "prompt": "同一个位置反复磨，我到底该拿着还是走？",
+      "expected_behavior": "加载 references/capabilities/dynamic-exit.md 并提示 exit-choice-tradeoff.md，用动能延续性判断",
+      "notes": "正面场景：动态离场（与离场二选一的近邻）"
+    },
+    {
+      "id": "should-trigger-15",
+      "type": "should_trigger",
+      "prompt": "行情一波动我就想动手，有没有办法让我别乱做？",
+      "expected_behavior": "加载 references/capabilities/execution-root-cause.md 做根因分诊，再指向 rules-over-mindset.md 给处方",
+      "notes": "正面场景：管不住手根因诊断（依赖规则替代修心）"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_trigger",
+      "prompt": "帮我看看今天黄金会涨还是会跌，给个方向。",
+      "expected_behavior": "应触发，但不得给出方向预测；加载 references/capabilities/two-way-playbook.md，交付上涨/下跌/震荡三支预案与放弃条件，并声明本体系不做预测与喊单",
+      "notes": "【2026-10-06 盲测后修订，原判为 should_not_trigger】盲测中独立 agent 选择触发并转为预案，经复核这符合本体系设计（out_of_scope 拒绝的是\"预测\"，不是拒绝接待此类提问）；原判据过严，故改为 should_trigger 并保留修订记录"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "我该选哪家平台开户？出金快不快？",
+      "expected_behavior": "不调用（平台与出入金操作不在范围内）",
+      "notes": "诱饵：平台操作"
+    },
+    {
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "帮我写一个 Python 脚本，从交易所 API 拉取 BTC 的分钟线。",
+      "expected_behavior": "不调用（编程任务，与交易决策体系无关）",
+      "notes": "诱饵：完全无关任务"
+    },
+    {
+      "id": "should-not-trigger-04",
+      "type": "should_not_trigger",
+      "prompt": "你在群里喊单，我跟一单，亏了算谁的？",
+      "expected_behavior": "不调用为交易能力；应提示带单/喊单在中国境内违法，并指向 references/capabilities/mentor-consistency-check.md 的风险提示",
+      "notes": "诱饵：带单/跟单，触发合规提示而非交易方法"
+    },
+    {
+      "id": "should-not-trigger-05",
+      "type": "should_not_trigger",
+      "prompt": "在国内做外汇保证金交易合法吗？会不会被抓？",
+      "expected_behavior": "不调用（法律合规判断不在范围内）",
+      "notes": "诱饵：法律合规"
+    },
+    {
+      "id": "should-not-trigger-06",
+      "type": "should_not_trigger",
+      "prompt": "推荐几只A股基金，我想定投。",
+      "expected_behavior": "不调用（受监管市场的投资建议，不在范围内）",
+      "notes": "诱饵：投资建议"
+    },
+    {
+      "id": "should-not-trigger-07",
+      "type": "should_not_trigger",
+      "prompt": "这个函数的内存占用太高了，帮我看看怎么优化。",
+      "expected_behavior": "不调用",
+      "notes": "诱饵：技术问题里出现\"止损\"类词汇的可能性为零，纯无关"
+    },
+    {
+      "id": "should-not-trigger-08",
+      "type": "should_not_trigger",
+      "prompt": "帮我查一下现在美元兑人民币的汇率。",
+      "expected_behavior": "不调用",
+      "notes": "诱饵：纯信息查询"
+    },
+    {
+      "id": "should-not-trigger-09",
+      "type": "should_not_trigger",
+      "prompt": "我想开个餐厅，但不懂餐饮，你觉得能做吗？",
+      "expected_behavior": "不调用（虽含\"不懂就不做\"的相似语义，但不是交易决策任务）",
+      "notes": "诱饵：语义近似但领域不同，测试是否误激活"
+    },
+    {
+      "id": "should-not-trigger-10",
+      "type": "should_not_trigger",
+      "prompt": "帮我把这段直播录音转成文字。",
+      "expected_behavior": "不调用",
+      "notes": "诱饵：素材处理任务，不是方法论咨询"
+    },
+    {
+      "id": "should-not-trigger-11",
+      "type": "should_not_trigger",
+      "prompt": "我该不该跟男朋友分手？",
+      "expected_behavior": "不调用（日常决策，不属于交易决策体系）",
+      "notes": "诱饵：泛决策误激活测试"
+    },
+    {
+      "id": "should-not-trigger-12",
+      "type": "should_not_trigger",
+      "prompt": "你觉得交易员江河这个人怎么样？他是不是骗子？",
+      "expected_behavior": "不调用交易方法；可指向 references/capabilities/mentor-consistency-check.md 提供\"手法一致性\"这一评估框架，但不做人身评价",
+      "notes": "诱饵：评价个人而非使用体系"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "做交易到底要不要看指标？MACD金叉能买吗？",
+      "expected_behavior": "应调用，加载 references/capabilities/kline-market-reading.md，说明只看K线、指标能体现的K线全能体现",
+      "notes": "边界：属于体系内的明确立场问题，应触发"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "我在一家受监管的期货公司做商品期货，止损该怎么设？",
+      "expected_behavior": "可调用 position-sizing-by-stop.md 的\"先定止损、再定仓位\"方法，但必须说明来源体系基于黄金CFD与加密合约，平台与合规语境不同",
+      "notes": "边界：方法可迁移，但语境不同，需显式声明"
+    },
+    {
+      "id": "edge-03",
+      "type": "edge_case",
+      "prompt": "行情这么大，我看不懂，但感觉是个机会，要不要小仓位试一下？",
+      "expected_behavior": "应调用 setup-gate.md，明确否决\"小仓位试一下\"——看不懂就是不做",
+      "notes": "边界：\"小仓位试一下\"是体系明确否定的措辞"
+    },
+    {
+      "id": "edge-04",
+      "type": "edge_case",
+      "prompt": "我回测了200单，胜率65%，盈亏比1:2，为什么实盘还是亏？",
+      "expected_behavior": "应调用 execution-root-cause.md 与 demo-to-live-discount.md，指出\"管不住手\"的根因是逻辑不全/不相信，并给出模拟转实盘的折损口径",
+      "notes": "边界：学员高频问题，跨两张卡"
+    },
+    {
+      "id": "edge-05",
+      "type": "edge_case",
+      "prompt": "能不能给我一个明确的进场点位？",
+      "expected_behavior": "不给出具体点位；调用 two-way-playbook.md 交付预案与判定流程，而非预测",
+      "notes": "边界：用户索要预测，需转为预案"
+    },
+    {
+      "id": "edge-06",
+      "type": "edge_case",
+      "prompt": "帮我看看我这张持仓截图，能不能扛过去？",
+      "expected_behavior": "应调用 trapped-order-triage.md 与 order-exit-discipline.md，但拒绝提供\"能不能扛\"的预测，改为给处置规则",
+      "notes": "边界：图片+预测请求，转为规则交付"
+    },
+    {
+      "id": "edge-07",
+      "type": "edge_case",
+      "prompt": "我看别人用剥头皮一天赚好几千，我也想学。",
+      "expected_behavior": "应调用 timeframe-contract.md 中的剥头皮界定，并提示\"剥头皮不适合做主模式\"这一立场与其情绪成本",
+      "notes": "边界：涉及体系内的否定性立场"
+    },
+    {
+      "id": "edge-08",
+      "type": "edge_case",
+      "prompt": "我只想提升一下生活质量，赚点零花钱，需要搞那么复杂的系统吗？",
+      "expected_behavior": "应调用 capital-and-reserve.md 与 growth-path.md，说明目标不同做法不同（复利 vs 零花钱）",
+      "notes": "边界：目标导向的适用性判断"
+    },
+    {
+      "id": "should-trigger-17",
+      "type": "should_trigger",
+      "prompt": "帮我在图上画一下现在的结构，我总不知道该从哪画起，也不知道该画在哪个周期。",
+      "expected_behavior": "调用 trader-jianghe-trading-system，加载 references/capabilities/n-structure.md，用「推动—回撤—推动」标记结构，并说明本级别与内部结构的区分",
+      "notes": "新增能力：N字形结构（现有 40 卡无对应）"
+    },
+    {
+      "id": "should-trigger-18",
+      "type": "should_trigger",
+      "prompt": "这波涨得特别猛，我不敢追，是不是要等回调？回调多深算过深？",
+      "expected_behavior": "加载 references/capabilities/pullback-continuation.md，指出强势行情不追单、等微弱回调结束再进，并说明回调过深的量化标准原文未给",
+      "notes": "新增能力：抓转折 / 第一推动+微弱回调→第二推动"
+    },
+    {
+      "id": "should-trigger-19",
+      "type": "should_trigger",
+      "prompt": "剥头皮怎么做？我看别人一分钟能进出好多次，我也想试试。",
+      "expected_behavior": "加载 references/capabilities/scalping-playbook.md，说明剥头皮是牺牲盈亏比换胜率的打法，并先讲前置条件（点差/手续费/流动性）",
+      "notes": "新增能力：剥头皮体系"
+    },
+    {
+      "id": "should-trigger-20",
+      "type": "should_trigger",
+      "prompt": "我这单才拿到 0.8 个盈亏比，要不要先落袋为安？",
+      "expected_behavior": "加载 references/capabilities/rr-floor-one-to-one.md，指出 1:1 是盈亏比下限、未到不主动离场",
+      "notes": "新增能力：盈亏比 1:1 底线"
+    },
+    {
+      "id": "should-trigger-21",
+      "type": "should_trigger",
+      "prompt": "仓位管理到底该用固定金额还是百分比？我每次亏的金额都不一样。",
+      "expected_behavior": "加载 references/capabilities/controllable-cost-exchange.md，说明「用可被固定的成本换不固定的收益」，并指向以损定仓",
+      "notes": "新增能力：可固定成本换不固定收益"
+    },
+    {
+      "id": "should-trigger-22",
+      "type": "should_trigger",
+      "prompt": "这段行情已经走了好久了，现在还能不能进？是不是算追高？",
+      "expected_behavior": "加载 references/capabilities/early-trend-entry.md，说明行情分初/中/末期、初期是加分项、末期是减分项",
+      "notes": "新增能力：优先参与行情初期"
+    },
+    {
+      "id": "should-trigger-23",
+      "type": "should_trigger",
+      "prompt": "我这算投资还是投机？我打算长期持有几年。",
+      "expected_behavior": "加载 references/capabilities/invest-vs-speculate.md，用「明天退市、5 年不上市还敢不敢按此价买入」判定，并指出持有时间长短不是判据",
+      "notes": "新增能力：投资与投机判定"
+    },
+    {
+      "id": "edge-09",
+      "type": "edge_case",
+      "prompt": "二推不破是不是就可以进场了？",
+      "expected_behavior": "加载 references/capabilities/pullback-continuation.md，明确转达「二推不破只是条件之一、不是唯一」，不可当充分信号使用",
+      "notes": "边界：防止把二推不破误当万能信号"
+    },
+    {
+      "id": "edge-10",
+      "type": "edge_case",
+      "prompt": "N字形的点一和点二分别是什么？",
+      "expected_behavior": "加载 references/capabilities/n-structure.md 解释这两个术语，并指出命名与定义原文未完整给出",
+      "notes": "边界：术语询问应命中 n-structure 而非 glossary 兜底"
+    },
+    {
+      "id": "edge-11",
+      "type": "edge_case",
+      "prompt": "我胜率挺高的，为什么还是不赚钱？",
+      "expected_behavior": "加载 references/capabilities/controllable-cost-exchange.md 与 rr-floor-one-to-one.md，引向「成本是否一致」与「盈亏比是否低于 1:1」",
+      "notes": "边界：高胜率不赚钱的诊断，应引向成本一致性而非技术问题"
+    },
+    {
+      "id": "edge-12",
+      "type": "edge_case",
+      "prompt": "被套了不卖，是不是就变成投资了？",
+      "expected_behavior": "加载 references/capabilities/invest-vs-speculate.md，指出「被套不卖 ≠ 投资」，判据在买入理由而非持有时间",
+      "notes": "边界：常见误解纠正"
+    },
+    {
+      "id": "edge-13",
+      "type": "edge_case",
+      "prompt": "剥头皮的止损要不要设？",
+      "expected_behavior": "加载 references/capabilities/scalping-playbook.md，说明剥头皮的止损口径（贴脸损/分段损）与其量化阈值原文未给",
+      "notes": "边界：剥头皮子问题应命中 scalping-playbook"
+    },
+    {
+      "id": "should-not-trigger-12",
+      "type": "should_not_trigger",
+      "prompt": "剥头皮用哪家平台返佣高？点差多少？",
+      "expected_behavior": "不调用（平台选择与费用属于平台操作，不在范围内）",
+      "notes": "近邻负例：含「剥头皮」但问的是平台操作"
+    },
+    {
+      "id": "should-not-trigger-13",
+      "type": "should_not_trigger",
+      "prompt": "帮我看看明天黄金会不会涨，我该做多还是做空？",
+      "expected_behavior": "不调用（行情预测与方向喊单不在范围内；若用户改问「怎么做预案」才应激活 two-way-playbook）",
+      "notes": "近邻负例：要求预测方向"
+    }
+  ]
+}
