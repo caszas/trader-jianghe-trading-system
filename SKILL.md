@@ -1,12 +1,12 @@
 ---
 name: trader-jianghe-trading-system
 description: |
-  交易员江河（B站）公开直播与视频内容的完整交易决策体系，由 Trader_TX 转录整理，覆盖从"这段行情怎么看"到"这单该不该做""开多大仓""什么时候走""亏了怎么办"的全链路。当用户需要一套可执行的交易决策流程、风控规则或资金管理方法时使用；关键词：裸K、关键位、宽幅震荡、周期契约、以损定仓、动态离场、筹码分配、拆订单回测、连损熔断、交易系统构建。不适用于：行情预测与喊单、平台/出入金操作、法律合规判断、投资建议；方法可作决策流程参考，但不提供受监管市场的合规判断与下单执行建议。
+ 交易员江河（B站）公开直播与视频内容的完整交易决策体系，由 Trader_TX 转录整理，覆盖从"这段行情怎么看"到"这单该不该做""开多大仓""什么时候走""亏了怎么办"的全链路。当用户需要一套可执行的交易决策流程、风控规则或资金管理方法时使用；关键词：裸K、关键位、宽幅震荡、周期契约、以损定仓、动态离场、筹码分配、拆订单回测、连损熔断、交易系统构建、跟单带单判定、交易层次、品种选择、复盘记录、警报盯盘。不适用于：行情预测与喊单、平台/出入金操作、法律合规判断、投资建议；方法可作决策流程参考，但不提供受监管市场的合规判断与下单执行建议。
 ---
 <!-- BRAND:BEGIN -->
 > **出处与许可**
-> 原作：交易员江河（B站）　·　转录与蒸馏整理：Trader_TX
-> 免费原版：https://space.bilibili.com/3707034000165448　·　许可：CC BY-NC 4.0：可自由传播，禁止商业使用与转售
+> 原作：交易员江河 · 整理：Trader_TX
+> 免费原版：https://github.com/caszas/trader-jianghe-trading-system　·　许可：CC BY-NC 4.0：可自由传播，禁止商业使用与转售
 <!-- BRAND:END -->
 # 交易员江河 · 交易决策体系 — 全书能力入口
 
@@ -34,11 +34,13 @@ description: |
 | 用户意图 | 先读 | 补读/备注 |
 |---|---|---|
 | 判断自己适合什么模式；决定放大哪个指标；找主模式 | references/capabilities/advantage-amplification.md | references/capabilities/order-deconstruction-backtest.md、references/capabilities/position-allocation.md、references/capabilities/growth-path.md |
+| 减少盯盘时间；设置关键位警报；处理等待期手痒；管理看盘精力 | references/capabilities/alert-based-monitoring.md | references/capabilities/setup-gate.md、references/capabilities/timeframe-contract.md、references/capabilities/self-check-overtrading.md、references/capabilities/state-and-event-guard.md |
 | 判断本金是否合适；决定留多少备用金 | references/capabilities/capital-and-reserve.md | references/capabilities/risk-budget-and-circuit-breaker.md |
 | 做资金隔离；制定出金计划；规避平台风险 | references/capabilities/capital-isolation-and-withdrawal.md | references/capabilities/risk-budget-and-circuit-breaker.md、references/capabilities/capital-and-reserve.md、references/capabilities/compounding-static.md、references/capabilities/emotion-three-step.md |
 | 设计复利方案；判断是否该放大仓位 | references/capabilities/compounding-static.md | references/capabilities/risk-budget-and-circuit-breaker.md、references/capabilities/capital-and-reserve.md、references/capabilities/position-allocation.md、references/capabilities/capital-isolation-and-withdrawal.md |
 | 连损后怎么办；连损两次后是否还能做；判断是否该停手；设置连损限度 | references/capabilities/consecutive-loss-stop.md | references/capabilities/position-sizing-by-stop.md、references/capabilities/risk-budget-and-circuit-breaker.md、references/capabilities/trapped-order-triage.md |
 | 下单前算成本；选择仓位管理方式；诊断高胜率仍亏损 | references/capabilities/controllable-cost-exchange.md | references/capabilities/position-sizing-by-stop.md |
+| 判断是否跟单；拒绝带单邀请；处理别人喊单；纠正靠别人赚钱的期待 | references/capabilities/copy-trade-rejection.md | references/capabilities/trade-system-build.md、references/capabilities/mentor-consistency-check.md、references/capabilities/invest-vs-speculate.md、references/capabilities/setup-gate.md |
 | 从模拟盘转实盘；评估模拟盘数据可信度 | references/capabilities/demo-to-live-discount.md | references/capabilities/mentor-consistency-check.md、references/capabilities/capital-isolation-and-withdrawal.md |
 | 判断何时离场；判断动能是否延续 | references/capabilities/dynamic-exit.md | references/capabilities/exit-choice-tradeoff.md、references/capabilities/stop-loss-mechanics.md、references/capabilities/order-exit-discipline.md |
 | 判断行情处于哪一段；决定要不要追已经走远的趋势；判断什么算优质订单 | references/capabilities/early-trend-entry.md | references/capabilities/trend-definition.md、references/capabilities/true-false-breakout.md、references/capabilities/key-level-reading.md |
@@ -63,6 +65,7 @@ description: |
 | 计算仓位；确定止损位；判断止损该放哪 | references/capabilities/position-sizing-by-stop.md | references/capabilities/setup-gate.md、references/capabilities/position-allocation.md、references/capabilities/order-exit-discipline.md |
 | 判断强势行情在哪进场；判断回调是否过深；使用ABC波段模型；理解二推不破的边界 | references/capabilities/pullback-continuation.md | references/capabilities/key-level-reading.md、references/capabilities/trend-definition.md、references/capabilities/range-market-playbook.md、references/capabilities/true-false-breakout.md |
 | 判定是否宽幅震荡；在震荡里怎么参与；判断压缩震荡 | references/capabilities/range-market-playbook.md | references/capabilities/kline-market-reading.md、references/capabilities/key-level-reading.md、references/capabilities/trend-definition.md、references/capabilities/two-way-playbook.md |
+| 设计复盘记录模板；区分客观记录与主观记录；定位执行偏差；准备复盘样本 | references/capabilities/review-dual-recording.md | references/capabilities/review-scope.md、references/capabilities/trade-system-build.md、references/capabilities/emotion-three-step.md、references/capabilities/order-deconstruction-backtest.md |
 | 复盘；判断亏损要不要复盘；统计交易结果 | references/capabilities/review-scope.md | references/capabilities/order-deconstruction-backtest.md、references/capabilities/emotion-three-step.md |
 | 设定单笔风险；设定当日熔断；判断账户该放多少钱 | references/capabilities/risk-budget-and-circuit-breaker.md | references/capabilities/position-sizing-by-stop.md、references/capabilities/order-exit-discipline.md、references/capabilities/consecutive-loss-stop.md、references/capabilities/capital-isolation-and-withdrawal.md |
 | 设定止盈位置；判断能否提前离场；理解高胜率为何不赚钱 | references/capabilities/rr-floor-one-to-one.md | references/capabilities/controllable-cost-exchange.md、references/capabilities/dynamic-exit.md、references/capabilities/exit-choice-tradeoff.md、references/capabilities/order-deconstruction-backtest.md |
@@ -73,8 +76,10 @@ description: |
 | 判断今天能不能做；数据行情怎么处理；作息安排 | references/capabilities/state-and-event-guard.md | references/capabilities/setup-gate.md、references/capabilities/risk-budget-and-circuit-breaker.md |
 | 决定何时推止损；止损给多大；处理浮盈回吐 | references/capabilities/stop-loss-mechanics.md | references/capabilities/position-sizing-by-stop.md、references/capabilities/dynamic-exit.md、references/capabilities/order-exit-discipline.md |
 | 判断行情强弱；判断节奏；动能与结构冲突时怎么选 | references/capabilities/strength-and-momentum.md | references/capabilities/trend-definition.md、references/capabilities/dynamic-exit.md、references/capabilities/entry-model-taxonomy.md、references/capabilities/range-market-playbook.md |
+| 判断品种适不适合方法；选择主品种；避开控盘品种；处理多品种分散 | references/capabilities/symbol-selection-boundary.md | references/capabilities/kline-market-reading.md、references/capabilities/setup-gate.md、references/capabilities/mentor-consistency-check.md、references/capabilities/timeframe-contract.md |
 | 配置主次周期；判断周期是否错配；判断是否顺势 | references/capabilities/timeframe-contract.md | references/capabilities/kline-market-reading.md、references/capabilities/internal-external-structure.md、references/capabilities/key-level-reading.md |
 | 构建交易系统；判断系统是否完整；判断何时该做单 | references/capabilities/trade-system-build.md | references/capabilities/setup-gate.md、references/capabilities/entry-model-taxonomy.md、references/capabilities/order-deconstruction-backtest.md |
+| 判断自己停在哪一层；决定用几套方案；处理多方案冲突；判断是否该退回单一逻辑 | references/capabilities/trading-levels.md | references/capabilities/entry-model-taxonomy.md、references/capabilities/growth-path.md、references/capabilities/advantage-amplification.md、references/capabilities/compounding-static.md |
 | 处理被套单；判断是否该扛；判断解套行为 | references/capabilities/trapped-order-triage.md | references/capabilities/position-sizing-by-stop.md、references/capabilities/order-exit-discipline.md、references/capabilities/consecutive-loss-stop.md |
 | 判断当前趋势方向；判断方向是否改变；判断结构是否延续 | references/capabilities/trend-definition.md | references/capabilities/kline-market-reading.md、references/capabilities/timeframe-contract.md、references/capabilities/range-market-playbook.md、references/capabilities/strength-and-momentum.md |
 | 判断突破是真是假；决定是否追单；判断二次突破 | references/capabilities/true-false-breakout.md | references/capabilities/key-level-reading.md、references/capabilities/range-market-playbook.md、references/capabilities/entry-model-taxonomy.md、references/capabilities/trend-definition.md |
@@ -102,5 +107,5 @@ description: |
 
 <!-- BRANDFOOT:BEGIN -->
 ---
-*原作：交易员江河（B站）　·　转录与蒸馏整理：Trader_TX　·　免费原版：https://space.bilibili.com/3707034000165448　·　CC BY-NC 4.0：可自由传播，禁止商业使用与转售*
+*原作：交易员江河 · 整理：Trader_TX　·　免费原版：https://github.com/caszas/trader-jianghe-trading-system　·　CC BY-NC 4.0：可自由传播，禁止商业使用与转售*
 <!-- BRANDFOOT:END -->

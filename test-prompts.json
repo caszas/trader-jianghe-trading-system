@@ -1,7 +1,7 @@
 {
   "skill": "trader-jianghe-trading-system",
-  "version": "1.0.0",
-  "note": "single 模式：1 个入口 + 47 张能力卡。should_trigger 用例同时承担路由断言（expected_behavior 中标明应加载的能力卡）。",
+  "version": "1.1.0",
+  "note": "single 模式：1 个入口 + 52 张能力卡。should_trigger 用例同时承担路由断言（expected_behavior 中标明应加载的能力卡）。",
   "test_cases": [
     {
       "id": "should-trigger-01",
@@ -345,6 +345,76 @@
       "prompt": "帮我看看明天黄金会不会涨，我该做多还是做空？",
       "expected_behavior": "不调用（行情预测与方向喊单不在范围内；若用户改问「怎么做预案」才应激活 two-way-playbook）",
       "notes": "近邻负例：要求预测方向"
+    },
+    {
+      "id": "should-trigger-50",
+      "type": "should_trigger",
+      "prompt": "群里老师喊单让我跟他做，说跟着他就能稳定盈利，这靠谱吗？",
+      "expected_behavior": "调用 trader-jianghe-trading-system，加载 references/capabilities/copy-trade-rejection.md，按合规/期望值/概率三层判定并倾向拒绝，不做带单操作指引",
+      "notes": "第三轮新增：跟单/带单拒绝"
+    },
+    {
+      "id": "should-not-trigger-50",
+      "type": "should_not_trigger",
+      "prompt": "我想判断某个交易博主是不是只会马后炮、值不值得跟他学",
+      "expected_behavior": "加载 mentor-consistency-check 而非 copy-trade-rejection；本用例不应激活跟单拒绝目标能力",
+      "notes": "近邻负例：博主一致性 ≠ 跟单邀请"
+    },
+    {
+      "id": "should-trigger-51",
+      "type": "should_trigger",
+      "prompt": "我学了好几套方法，到底该只用一套还是全都用？",
+      "expected_behavior": "调用 trader-jianghe-trading-system，加载 references/capabilities/trading-levels.md，按三个层次定位并倾向条件专用型，收益靠仓位管理而非堆逻辑",
+      "notes": "第三轮新增：交易层次"
+    },
+    {
+      "id": "should-not-trigger-51",
+      "type": "should_not_trigger",
+      "prompt": "顺势交易里回调进场有哪几种模型？",
+      "expected_behavior": "加载 entry-model-taxonomy 而非 trading-levels；本用例不应激活交易层次目标能力",
+      "notes": "近邻负例：进场模型分类 ≠ 方案层次"
+    },
+    {
+      "id": "should-trigger-52",
+      "type": "should_trigger",
+      "prompt": "我这套裸K方法能不能拿去做某个小众币？那个品种感觉有人控盘",
+      "expected_behavior": "调用 trader-jianghe-trading-system，加载 references/capabilities/symbol-selection-boundary.md，判断系统默认不绑品种但控盘品种技术失效，并提示只专注一个主品种",
+      "notes": "第三轮新增：品种适配边界"
+    },
+    {
+      "id": "should-not-trigger-52",
+      "type": "should_not_trigger",
+      "prompt": "帮我看看现在黄金该做多还是做空，给个点位",
+      "expected_behavior": "不加载任何能力卡做方向/点位预测；按 stop_conditions 停止并说明只提供决策流程",
+      "notes": "近邻负例：品种预测 ≠ 品种适配判断"
+    },
+    {
+      "id": "should-trigger-53",
+      "type": "should_trigger",
+      "prompt": "我复盘时到底该记些什么？只记盈亏行不行？",
+      "expected_behavior": "调用 trader-jianghe-trading-system，加载 references/capabilities/review-dual-recording.md，要求客观市场记录与主观决策记录并列，并说明先有可固定执行的系统",
+      "notes": "第三轮新增：复盘双记录"
+    },
+    {
+      "id": "should-not-trigger-53",
+      "type": "should_not_trigger",
+      "prompt": "亏了一笔之后总想马上做回来，怎么控制情绪？",
+      "expected_behavior": "加载 emotion-three-step 而非 review-dual-recording；本用例不应激活复盘记录目标能力",
+      "notes": "近邻负例：亏损情绪 ≠ 复盘记录"
+    },
+    {
+      "id": "should-trigger-54",
+      "type": "should_trigger",
+      "prompt": "我不想一整天盯着盘，能不能到关键位再提醒我？",
+      "expected_behavior": "调用 trader-jianghe-trading-system，加载 references/capabilities/alert-based-monitoring.md，给出设警报后离开盘面、到点再回的流程并标注到达时间原文未给",
+      "notes": "第三轮新增：警报代替盯盘"
+    },
+    {
+      "id": "should-not-trigger-54",
+      "type": "should_not_trigger",
+      "prompt": "今晚有重要数据公布，交易前该怎么处理？",
+      "expected_behavior": "加载 state-and-event-guard 而非 alert-based-monitoring；本用例不应激活看盘时间管理目标能力",
+      "notes": "近邻负例：事件冷却 ≠ 警报盯盘"
     }
   ]
 }

@@ -1,7 +1,7 @@
 <!-- BRAND:BEGIN -->
 > **出处与许可**
-> 原作：交易员江河（B站）　·　转录与蒸馏整理：Trader_TX
-> 免费原版：https://space.bilibili.com/3707034000165448　·　许可：CC BY-NC 4.0：可自由传播，禁止商业使用与转售
+> 原作：交易员江河 · 整理：Trader_TX
+> 免费原版：https://github.com/caszas/trader-jianghe-trading-system　·　许可：CC BY-NC 4.0：可自由传播，禁止商业使用与转售
 <!-- BRAND:END -->
 # 盈亏比 1:1 底线（低于此不做）
 
@@ -147,5 +147,5 @@
 
 <!-- BRANDFOOT:BEGIN -->
 ---
-*原作：交易员江河（B站）　·　转录与蒸馏整理：Trader_TX　·　免费原版：https://space.bilibili.com/3707034000165448　·　CC BY-NC 4.0：可自由传播，禁止商业使用与转售*
+*原作：交易员江河 · 整理：Trader_TX　·　免费原版：https://github.com/caszas/trader-jianghe-trading-system　·　CC BY-NC 4.0：可自由传播，禁止商业使用与转售*
 <!-- BRANDFOOT:END -->

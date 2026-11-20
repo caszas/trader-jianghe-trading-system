@@ -2,7 +2,7 @@
 
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](./LICENSE)
 
-把交易员江河的公开直播与视频内容，整理成 **47 张能力卡**。
+把交易员江河的公开直播与视频内容，整理成 **52 张能力卡**。
 从「这段行情怎么看」到「这单该不该做」「开多大仓」「什么时候走」「亏了怎么办」，一条链走完。
 
 ---
@@ -11,8 +11,8 @@
 
 - [从哪拿](#从哪拿)
 - [这是什么](#这是什么)
-  - [七层体系](#七层体系)
-  - [核心原则](#核心原则)
+ - [七层体系](#七层体系)
+ - [核心原则](#核心原则)
 - [怎么用](#怎么用)
 - [文件结构](#文件结构)
 - [常见问题](#常见问题)
@@ -36,10 +36,10 @@
 
 | | |
 |---|---|
-| 能力卡 | **47 张**，每张含 R / I / A1 / A2 / E / B 六段 |
+| 能力卡 | **52 张**，每张含 R / I / A1 / A2 / E / B 六段 |
 | 术语表 | 75 条（作者用法 vs 常识用法的差异） |
-| 触发测试用例 | 49 条 |
-| 整理自 | 交易员江河的公开直播与视频内容，共 135 万字转写稿 |
+| 触发测试用例 | 59 条 |
+| 整理自 | 交易员江河的公开直播与视频内容，共 216 万字转写稿 |
 
 每张能力卡分六段：
 
@@ -92,7 +92,7 @@ https://github.com/caszas/trader-jianghe-trading-system
 
 装好后请确认：
 1. SKILL.md 能被正确识别（frontmatter 能解析）
-2. 里面的 references/capabilities/ 下有 47 张能力卡
+2. 里面的 references/capabilities/ 下有 52 张能力卡
 3. 告诉我以后该怎么向你提问才能用上它
 ```
 
@@ -105,7 +105,7 @@ git clone https://github.com/caszas/trader-jianghe-trading-system.git
 然后把克隆下来的整个目录移动到你的技能目录（比如 `~/.claude/skills/`）。
 
 装好的效果是：技能目录下多出一个 `trader-jianghe-trading-system/`，
-里面是 `SKILL.md` + `references/`（47 张能力卡 + 索引 + 术语表 + 速查）。
+里面是 `SKILL.md` + `references/`（52 张能力卡 + 索引 + 术语表 + 速查）。
 
 ### 二、装好后直接提问就行
 
@@ -125,13 +125,13 @@ git clone https://github.com/caszas/trader-jianghe-trading-system.git
 
 请这样用它：
 
-1. 先读 SKILL.md —— 里面有 47 条用户意图的路由表
+1. 先读 SKILL.md —— 里面有 52 条用户意图的路由表
 2. 按我的问题，从 references/capabilities/ 里挑 1 张最相关的能力卡读（最多 2 张）
 3. 严格按那张卡的「E — 可执行步骤」来回答，不要自由发挥、不要加你自己的交易观点
 4. 卡片里标了「实现约定」的地方，如实告诉我哪些是原文没给、由整理者补的
 5. 引用原文时带上卡片 R 段的出处（ep-日期 行号）
 6. 如果我的问题超出范围——行情预测、喊单、平台开户出入金、法律合规、投资建议——
-   直接说不做，并说明为什么
+ 直接说不做，并说明为什么
 
 我的问题是：<在这里写你的问题>
 ```
@@ -172,17 +172,17 @@ git clone https://github.com/caszas/trader-jianghe-trading-system.git
 
 ```
 trader-jianghe-trading-system/
-├── SKILL.md                      入口：47 条意图的路由表
-├── README.md                     本文件
-├── LICENSE                       CC BY-NC 4.0 协议正文
-├── NOTICE.md                     中文许可说明与补充要求
-├── test-prompts.json             49 条触发测试用例（可自测 / 可用于自动进化）
+├── SKILL.md 入口：52 条意图的路由表
+├── README.md 本文件
+├── LICENSE CC BY-NC 4.0 协议正文
+├── NOTICE.md 中文许可说明与补充要求
+├── test-prompts.json 59 条触发测试用例（可自测 / 可用于自动进化）
 └── references/
-    ├── capabilities/             47 张能力卡
-    ├── capability-index.md       完整意图与关键词索引
-    ├── overview.md               体系总览（主旨 / 骨架 / 术语 / 作者局限 / 边界）
-    ├── glossary.md               术语表（75 条）
-    └── cheatsheet.md             一页决策规则速查
+ ├── capabilities/ 52 张能力卡
+ ├── capability-index.md 完整意图与关键词索引
+ ├── overview.md 体系总览（主旨 / 骨架 / 术语 / 作者局限 / 边界）
+ ├── glossary.md 术语表（75 条）
+ └── cheatsheet.md 一页决策规则速查
 ```
 
 ---
@@ -219,7 +219,7 @@ A：支持 skill 的（Claude Code、WorkBuddy 等）直接放进技能目录即
 网页版 AI 用上面「怎么用」的第三种方式，手动粘卡片内容。
 
 **Q：`test-prompts.json` 是干什么的？**
-A：49 条测试用例（该触发 / 不该触发 / 边界），用来验证技能会不会正确加载对应的卡片。
+A：59 条测试用例（该触发 / 不该触发 / 边界），用来验证技能会不会正确加载对应的卡片。
 也可以喂给 darwin-skill 做自动进化。
 
 ---

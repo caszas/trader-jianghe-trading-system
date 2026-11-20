@@ -1,18 +1,20 @@
 <!-- BRAND:BEGIN -->
 > **出处与许可**
-> 原作：交易员江河（B站）　·　转录与蒸馏整理：Trader_TX
-> 免费原版：https://space.bilibili.com/3707034000165448　·　许可：CC BY-NC 4.0：可自由传播，禁止商业使用与转售
+> 原作：交易员江河 · 整理：Trader_TX
+> 免费原版：https://github.com/caszas/trader-jianghe-trading-system　·　许可：CC BY-NC 4.0：可自由传播，禁止商业使用与转售
 <!-- BRAND:END -->
 # 能力索引（完整版）
 
 | 标题 | 重要度 | 意图 | 关键词 | 能力卡 |
 |---|---|---|---|---|
 | 放大优势（胜率与盈亏比不可兼得） | high | 判断自己适合什么模式；决定放大哪个指标；找主模式 | 优势、胜率、盈亏比、极端化、主模式、advantage | capabilities/advantage-amplification.md |
+| 用警报代替盯盘（看盘时间管理） | medium | 减少盯盘时间；设置关键位警报；处理等待期手痒；管理看盘精力 | 警报、盯盘、看盘时间、到点再看、alert、等待 | capabilities/alert-based-monitoring.md |
 | 本金规模与备用金 | high | 判断本金是否合适；决定留多少备用金 | 本金、备用金、资金量、资金容纳量、capital、reserve | capabilities/capital-and-reserve.md |
 | 资金隔离与分批出金 | high | 做资金隔离；制定出金计划；规避平台风险 | 资金隔离、资金隔断、出金、提现、平台风险、capital isolation | capabilities/capital-isolation-and-withdrawal.md |
 | 静态复利（固定式复利 + 资金隔断） | high | 设计复利方案；判断是否该放大仓位 | 复利、静态复利、固定式、资金隔断、compounding | capabilities/compounding-static.md |
 | 连损熔断（同一逻辑两次即停） | critical | 连损后怎么办；连损两次后是否还能做；判断是否该停手；设置连损限度 | 连损、熔断、停手、上头、再一再二不再三、consecutive loss | capabilities/consecutive-loss-stop.md |
 | 可固定成本换不固定收益（交换公式） | high | 下单前算成本；选择仓位管理方式；诊断高胜率仍亏损 | 固定成本、交换公式、仓位管理、百分比仓位、成本一致、fixed cost | capabilities/controllable-cost-exchange.md |
+| 拒绝带单与跟单（要不要跟单的决策） | high | 判断是否跟单；拒绝带单邀请；处理别人喊单；纠正靠别人赚钱的期待 | 跟单、带单、喊单、不带单、复制交易、copy trade、独立思考 | capabilities/copy-trade-rejection.md |
 | 模拟盘 → 实盘的数据折损评估 | medium | 从模拟盘转实盘；评估模拟盘数据可信度 | 模拟盘、实盘、折损、折扣、demo to live | capabilities/demo-to-live-discount.md |
 | 动态离场（动能延续性判断） | high | 判断何时离场；判断动能是否延续 | 动态离场、止盈、动能、延续、推止损、dynamic exit、take profit | capabilities/dynamic-exit.md |
 | 优先参与行情初期（该参与哪一段） | high | 判断行情处于哪一段；决定要不要追已经走远的趋势；判断什么算优质订单 | 行情初期、中期、末期、追高、参与哪一段、early trend、entry timing | capabilities/early-trend-entry.md |
@@ -37,6 +39,7 @@
 | 以损定仓（逻辑否认点 → 仓位反推） | critical | 计算仓位；确定止损位；判断止损该放哪 | 以损定仓、止损、仓位、逻辑否认点、手数、position sizing、stop loss | capabilities/position-sizing-by-stop.md |
 | 抓转折：第一推动 + 微弱回调 → 第二推动 | critical | 判断强势行情在哪进场；判断回调是否过深；使用ABC波段模型；理解二推不破的边界 | 抓转折、第一推动、第二推动、ABC模型、回调、二推不破、强弱强、pullback、continuation | capabilities/pullback-continuation.md |
 | 宽幅震荡识别与高空低多 | critical | 判定是否宽幅震荡；在震荡里怎么参与；判断压缩震荡 | 宽幅震荡、震荡、高空低多、压缩、扩散、区间、range、consolidation | capabilities/range-market-playbook.md |
+| 复盘双重记录（客观市场记录 + 主观决策记录） | high | 设计复盘记录模板；区分客观记录与主观记录；定位执行偏差；准备复盘样本 | 复盘记录、双重记录、客观记录、主观决策、journal、复盘模板 | capabilities/review-dual-recording.md |
 | 复盘口径（只看实际结果） | medium | 复盘；判断亏损要不要复盘；统计交易结果 | 复盘、假盈利、盈亏同源、概率损、成本、review | capabilities/review-scope.md |
 | 单笔风险预算与当日熔断（亏不没） | critical | 设定单笔风险；设定当日熔断；判断账户该放多少钱 | 单笔风险、2%、最大回撤、熔断、亏不没、risk budget、drawdown | capabilities/risk-budget-and-circuit-breaker.md |
 | 盈亏比 1:1 底线（低于此不做） | high | 设定止盈位置；判断能否提前离场；理解高胜率为何不赚钱 | 盈亏比、1:1、一比一、止盈、离场、risk-reward、RR | capabilities/rr-floor-one-to-one.md |
@@ -47,8 +50,10 @@
 | 精力/身体管理与数据行情冷却 | high | 判断今天能不能做；数据行情怎么处理；作息安排 | 精力、状态、身体、数据行情、非农、冷却、energy、cooldown | capabilities/state-and-event-guard.md |
 | 移动止损机制 | high | 决定何时推止损；止损给多大；处理浮盈回吐 | 移动止损、推止损、保本、结构点、发力点、trailing stop | capabilities/stop-loss-mechanics.md |
 | 强弱判断与动能/结构取舍 | high | 判断行情强弱；判断节奏；动能与结构冲突时怎么选 | 强弱、动能、结构、节奏、发力点、动能线、strength、momentum | capabilities/strength-and-momentum.md |
+| 品种选择与系统适配边界（我的方法能用在哪些品种） | high | 判断品种适不适合方法；选择主品种；避开控盘品种；处理多品种分散 | 品种、主品种、小众品种、控盘、山寨币、symbol selection、专注 | capabilities/symbol-selection-boundary.md |
 | 周期契约与主/次/参考周期配置 | critical | 配置主次周期；判断周期是否错配；判断是否顺势 | 周期、主周期、次周期、参考周期、顺势、成本、timeframe、multi-timeframe | capabilities/timeframe-contract.md |
 | 交易系统构建（主观构建 → 客观执行） | critical | 构建交易系统；判断系统是否完整；判断何时该做单 | 交易系统、构建、主观、客观、触发、system building | capabilities/trade-system-build.md |
+| 交易三个层次（几套方案与停在哪一层） | high | 判断自己停在哪一层；决定用几套方案；处理多方案冲突；判断是否该退回单一逻辑 | 交易层次、碰撞测试、条件专用、多方案匹配、几套方案、trading levels | capabilities/trading-levels.md |
 | 被套单排障（逻辑被否认即离场） | high | 处理被套单；判断是否该扛；判断解套行为 | 被套、扛单、解套、补仓、逻辑否认、trapped order | capabilities/trapped-order-triage.md |
 | 趋势与结构延续的明确定义 | high | 判断当前趋势方向；判断方向是否改变；判断结构是否延续 | 趋势、方向、结构延续、高低点、防守位、打破、trend、structure | capabilities/trend-definition.md |
 | 真突破/假突破判定 | high | 判断突破是真是假；决定是否追单；判断二次突破 | 真突破、假突破、突破、二次突破、跟随、breakout、false breakout | capabilities/true-false-breakout.md |
@@ -57,5 +62,5 @@
 
 <!-- BRANDFOOT:BEGIN -->
 ---
-*原作：交易员江河（B站）　·　转录与蒸馏整理：Trader_TX　·　免费原版：https://space.bilibili.com/3707034000165448　·　CC BY-NC 4.0：可自由传播，禁止商业使用与转售*
+*原作：交易员江河 · 整理：Trader_TX　·　免费原版：https://github.com/caszas/trader-jianghe-trading-system　·　CC BY-NC 4.0：可自由传播，禁止商业使用与转售*
 <!-- BRANDFOOT:END -->
